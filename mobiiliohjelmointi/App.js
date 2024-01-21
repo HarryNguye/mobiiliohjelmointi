@@ -19,6 +19,10 @@ export default function App() {
       <View style={styles.Button} >
       <Button title="Make a guess" onPress={handleGuess} />
       </View>
+      
+      <View style={styles.Button} >
+      <Button title="Make a guess" onPress={handleGuess} />
+      </View>
 
       <StatusBar style="auto" />
     </View>
