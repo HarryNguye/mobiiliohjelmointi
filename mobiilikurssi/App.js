@@ -2,7 +2,71 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, FlatList, StatusBar } from 'react-native';
 
 export default function App() {
-  const [num1, setNum1] = useState('');
+  const [data, setData] = useState([])
+  const [text, setText] = useState('')
+
+
+  const buttonPressed = () => {
+    setData([...data, { key: text }]);
+    setText('');
+  }
+
+  const clear = () =>{
+    setData([]);
+  }
+
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          onChangeText={setText}
+          value={text}
+        />
+      </View>
+      <StatusBar style="auto" />
+      <View style={styles.buttonContainer}>
+        <Button title="Lisää" onPress={buttonPressed} />
+        <Button title="Nollaa" onPress={clear} />
+      </View>
+      <Text>Shopping list</Text>
+      <FlatList
+        style={styles.list}
+        data={data}
+        renderItem={({ item }) =>
+          <Text>{item.key}</Text>
+        }
+        keyExtractor={(item, index) => index.toString()}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  input: {
+    marginTop: 50,
+    marginBottom: 5,
+    width: 100,
+    borderColor: 'gray',
+    borderWidth: 1
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    margin: 10,
+  }
+});
+ 
+ 
+ 
+ // Laskuri historialla.
+  /*const [num1, setNum1] = useState('');
   const [num2, setNum2] = useState('');
   const [result, setResult] = useState('');
   const [data, setData] = useState([]);
@@ -77,7 +141,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     margin: 10,
   }
-});
+});*/
 
 
 
