@@ -1,8 +1,32 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, FlatList, StatusBar } from 'react-native';
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import CalculatorScreen from './CalculatorScreen';
+import HistoryScreen from './HistoryScreen';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [data, setData] = useState([])
+  const [data, setData] = React.useState([]);
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Calculator">
+          {props => <CalculatorScreen {...props} data={data} setData={setData} />}
+        </Stack.Screen>
+        <Stack.Screen name="History" component={HistoryScreen} initialParams={{ data }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+
+
+  //Shopping list.
+  /*const [data, setData] = useState([])
   const [text, setText] = useState('')
 
 
@@ -61,7 +85,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     margin: 10,
   }
-});
+});*/
  
  
  
